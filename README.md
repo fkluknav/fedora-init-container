@@ -20,7 +20,6 @@ docker build -t name_of_the_image .
 ```
 Then run your container:
 ```
-docker run -d -p 80:80 -v /somedirectory:/var/log/httpd:rw name_of_the_image /sbin/init
+docker run -d -p 80:80 -v /somedirectory:/var/log/httpd:rw name_of_the_image
 ```
 Mounting /var/log/httpd is important because by default tmpfs is mounted over /var/log, httpd can not find its subfolder there and fails to start. This is a bug in oci-systemd-hook and will be hopefully solved soon.
-Running /sbin/init explicitly is important. Adding `CMD /sbin/init` to your Dockerfile is NOT the same thing. Without it, oci-systemd-hook would not recognize that you are going to run systemd and would not do its work of mounting appropriate filesystems from the host.

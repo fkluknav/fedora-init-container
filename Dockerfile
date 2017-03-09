@@ -16,7 +16,7 @@ LABEL MAINTAINER "Frantisek Kluknavsky" <fkluknav@redhat.com> \
 
 #Do not use CMD. Oci-systemd-hook depends on running /sbin/init explicitly.
 #This is against guidelines but would not make sense otherwise.
-#CMD "/sbin/init"
+CMD ["/sbin/init"]
 
 STOPSIGNAL SIGRTMIN+3
 
