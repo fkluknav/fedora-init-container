@@ -23,3 +23,11 @@ Then run your container:
 docker run -d -p 80:80 -v /somedirectory:/var/log/httpd:rw name_of_the_image
 ```
 Mounting /var/log/httpd is important because by default tmpfs is mounted over /var/log, httpd can not find its subfolder there and fails to start. This is a bug in oci-systemd-hook and will be hopefully solved soon.
+
+To stop the container gracefully, do:
+```
+docker stop name_of_the_container
+```
+This image has STOPSIGNAL redefined to SIGRTMIN+3, which causes systemd to shutdown cleanly. (The usual STOPSIGNAL SIGTERM stops most of usual processes, but not systemd. Systemd reexecs itself on SIGTERM.) Currently it takes a lot of time to shutdown systemd in a container - longer than the grace period after which it is deemed unresponsive and mercilessly killed by docker.
+
+Procps-ng is installed in this image. You can use it to `docker exec somecontainer ps` to get info about processes running in a container in a convenient way.
