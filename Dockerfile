@@ -14,8 +14,6 @@ LABEL MAINTAINER "Frantisek Kluknavsky" <fkluknav@redhat.com> \
 	io.k8s.description="Fedora image for running systemd services" \
 	io.k8s.display-name="Fedora systemd out-of-box"
 
-#Do not use CMD. Oci-systemd-hook depends on running /sbin/init explicitly.
-#This is against guidelines but would not make sense otherwise.
 CMD ["/sbin/init"]
 
 STOPSIGNAL SIGRTMIN+3
