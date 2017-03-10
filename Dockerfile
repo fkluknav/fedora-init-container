@@ -20,5 +20,6 @@ STOPSIGNAL SIGRTMIN+3
 
 #ps can be useful in a multi-process container
 RUN systemctl mask systemd-remount-fs.service dev-hugepages.mount sys-fs-fuse-connections.mount systemd-logind.service getty.target console-getty.service && systemctl disable dnf-makecache.timer dnf-makecache.service && dnf -y install procps-ng && dnf clean all
+# no need to disable systemd-udev-trigger.service systemd-udevd.service, udev is not installed
 
 ADD README.md /
