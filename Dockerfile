@@ -1,4 +1,4 @@
-FROM fedora:25
+FROM registry.access.redhat.com/rhel7
 
 #systemd recognizes "container=docker" and does not recognize ocid but it does not make any difference except for the welcome message
 #avoid mentioning trademarked docker
